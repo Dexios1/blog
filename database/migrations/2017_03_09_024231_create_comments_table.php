@@ -17,9 +17,14 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->text('body');
             $table->integer('article_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('article_id')
+                ->references('id')
+                ->on('articles')
+                ->onDelete('cascade');
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('articles')
                 ->onDelete('cascade');
