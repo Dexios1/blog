@@ -63,7 +63,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-//        originally tooking Comment param
+//        originally took in Comment param
         $comments = Comment::with('User')
             ->where('article_id', '=', $id )
             ->latest()
@@ -107,7 +107,7 @@ class CommentController extends Controller
         if($user_id == $comment->user_id){
             $comment->delete();
             \Session::flash('success','comment deleted successfully');
-            return back();
+            return back;
         }
         else return back();
     }

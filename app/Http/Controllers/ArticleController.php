@@ -62,11 +62,16 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article = Article::find($id);
+//        $articles = Article::with('User')->where('id', '=', $id )->get();
+        $article = Article::with('User')->where('id', '=', $id )->get();
+        $article = $article[0];
+        $temp= 0;
+
         $comments = new CommentController();
         $comments= $comments->show($id);
+//        return ($comments->user()->id);
 
-        return view('articles.show', compact('article', 'comments'));
+        return view('articles.show', compact('article', 'comments', 'temp'));
     }
 
     /**
@@ -77,7 +82,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id);
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -89,7 +95,17 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Article::find($id)->update($request->all());
+        \Session::flash('success', ' Article updated');
+        return back();
+
+//        $data= new Article();
+//        $data->user_id =Auth::user()->id;
+//        $data->title =$request->title;
+//        $data->body =$request->body;
+//        $data->description =$request->description;
+//        return ($data);
+
     }
 
     /**

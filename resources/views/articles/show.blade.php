@@ -11,18 +11,18 @@
                 <div class="portlet-widgets">
                     <a href="javascript:;" data-toggle="reload"><i class="zmdi zmdi-refresh"></i></a>
                     <a data-toggle="collapse" data-parent="#accordion1" href="ui-cards.html#bg-primary1"><i class="zmdi zmdi-minus"></i></a>
-                    <a href="ui-cards.html#" data-toggle="remove"><i class="zmdi zmdi-close"></i></a>
+                    {{--<a href="ui-cards.html#" data-toggle="remove"><i class="zmdi zmdi-close"></i></a>--}}
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div id="bg-primary1" class="panel-collapse collapse in">
                 <div class="portlet-body">
-                    <div class="">{{$article->created_at->diffForHumans()}} by user {{$article->id}}</div>
+                    <div class="">{{$article->created_at->diffForHumans()}} by <b>{{$article->user->name}}</b></div>
                     <hr>
                     {{$article->body}}
 
                     <hr>
-                    <p>Written by: {{$article->user->name}} <span class="text-right"><a href="">Comment</a></span></p>
+                    <span>Written by: {{$article->user->name}}</span>
 
                 </div>
 

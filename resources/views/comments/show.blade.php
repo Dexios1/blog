@@ -14,8 +14,8 @@
                                 </time>
                             </a>
                             <span class="edit-link">
-                                    <a class="comment-edit-link" href="">Edit</a>
-                                </span>
+                                <a class="comment-edit-link" href="">Edit</a>
+                            </span>
                         </div><!-- .comment-metadata -->
                     </div>
 
@@ -26,13 +26,23 @@
                 </div><!-- .comment-content -->
 
                 <div class="reply">
-                    <a rel="nofollow" class="comment-reply-link" href="" aria-label="Reply to {{$comment->user}}">Reply</a>
+                    <p>
+                                <span class="pull-right">
+                                    @if($comment->user_id == Auth::user()->id)
+                                        <a rel="nofollow" class="comment-reply-link" href="" aria-label="Reply to {{$comment->user}}">Reply</a>
+                                    @endif
+                                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#deleteModal" type="submit">Delete</button>
+                                    {{$temp = $comment->id}}
+                                </span>
+                    </p>
                 </div>
             </article>
 
         @endforeach
     </ol>
+    @include('shared.deletemodal')
 @endif
+
 
 @if(1==0)
 <div class="comments">
