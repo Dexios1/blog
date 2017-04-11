@@ -1,8 +1,13 @@
 @extends('layouts.theme')
 
 @section('working_area')
-
+    @if(empty($articles))
+        <div class="card">
+            <p>There are no articles.</p>
+        </div>
+    @endif
     @if(!empty($articles))
+
 
         @foreach($articles as $article)
     <div class="col-lg-4">
@@ -25,16 +30,15 @@
                     <hr>
                     Written by: {{$article->user->name}}
                     <p>
-                    @if($article->user_id == $article->user->id)
+                        @if($article->user_id == $article->user->id)
                             <span class="pull-right"><a href="">Comment</a></span>
-                        <form action="/article/{{$article->id}}" method="POST">
-                            {{csrf_field()}}
-                            {{method_field('DELETE')}}
-                            <button class="btn btn-sm btn-warning" type="submit">Delete</button>
-                        </form>
-                    @endif
-
-                        </p>
+                            <form action="/article/{{$article->id}}" method="POST">
+                                {{csrf_field()}}
+                                {{method_field('DELETE')}}
+                                <button class="btn btn-sm btn-warning" type="submit">Delete your post</button>
+                            </form>
+                        @endif
+                    </p>
                 </div>
             </div>
         </div>

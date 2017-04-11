@@ -1,4 +1,4 @@
-<form action="/article/{{$article->id}}/comment" METHOD="POST">
+<form id="addComment" action="/article/{{$article->id}}/comment" METHOD="POST">
     {{csrf_field()}}
     <hr>
     <h3>Leave a reply</h3>
@@ -6,7 +6,7 @@
         <label for="body">Comment</label>
         @if ($errors->has('body'))
             <span class="help-block text-center">
-                        <strong class="text-danger">{{ $errors->first('body') }}Error test</strong>
+                        <strong class="text-danger">{{ $errors->first('body') }}</strong>
                     </span>
         @endif
         <input type="text" class="form-control" name="body" id="body">
