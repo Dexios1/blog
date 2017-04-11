@@ -31,7 +31,7 @@
                     Written by: {{$article->user->name}}
                     <p>
                         @if($article->user_id == $article->user->id)
-                            <span class="pull-right"><a href="">Comment</a></span>
+                            <span class="pull-right"><a href="/article/{{$article->id}}/edit">Edit</a></span>
                             <form action="/article/{{$article->id}}" method="POST">
                                 {{csrf_field()}}
                                 {{method_field('DELETE')}}
